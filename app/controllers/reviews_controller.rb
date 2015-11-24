@@ -1,6 +1,13 @@
 
 class ReviewsController < ApplicationController
 
+  before_filter :load_movie
+
+  # Filters are simply methods that run before, after, or "around"
+  # each controller action.
+  # In our ReviewsController,
+  # we have the same line at the beginning of both actions:
+
   def new
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build
@@ -20,6 +27,10 @@ class ReviewsController < ApplicationController
   end
 
   protected
+
+  def load_movie
+    @movie = Movie.find(params[:movie_id])
+  end
 
   def review_params
     params.require(:review).permit(:text, :rating_out_of_ten)
