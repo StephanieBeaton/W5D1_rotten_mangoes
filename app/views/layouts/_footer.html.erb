@@ -1,0 +1,15 @@
+<footer>
+  <small>
+
+    <!-- create conditional "log in," "sign up," and "log out" links in the page footer.
+    If a user isn't logged in, they should see the "log in" and "sign up" links.
+    If they are, they should see that they're logged in and a "log out" link.
+    -->
+
+    <% if current_user %>
+      Signed in as <%= current_user.email %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+    <% else %>
+      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+    <% end %>
+  </small>
+</footer>
