@@ -1,0 +1,19 @@
+<h1>Sessions#new</h1>
+<p>Find me in app/views/sessions/new.html.erb</p>
+
+<h1>Log In</h1>
+<!-- # It's a simple form_tag
+which will submit a POST request to the sessions_path,
+triggering our sessions#create action
+-->
+<%= form_tag sessions_path do %>
+  <div>
+    <%= label_tag :email %><br/>
+    <%= text_field_tag :email %>
+  </div>
+  <div>
+    <%= label_tag :password %><br/>
+    <%= password_field_tag :password %>
+  </div>
+  <div><%= submit_tag "Log In" %></div>
+<% end %>
