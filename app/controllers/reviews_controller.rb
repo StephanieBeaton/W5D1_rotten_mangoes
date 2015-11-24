@@ -1,7 +1,10 @@
 
 class ReviewsController < ApplicationController
 
+  before_filter :restrict_access
+
   before_filter :load_movie
+
 
   # Filters are simply methods that run before, after, or "around"
   # each controller action.
