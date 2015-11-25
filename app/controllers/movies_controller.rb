@@ -84,6 +84,8 @@ class MoviesController < ApplicationController
 
     end
 
+    # User.where("name like :kw or description like :kw", :kw=>"%#{params[:query]}%").to_sql
+
     @movies = Movie.where(where_arg).page(params[:page]).per(10)
     render :index
   end
