@@ -9,13 +9,15 @@ class SessionsController < ApplicationController
   end
 
 
-  # It's a simple form_tag which will submit a POST request to the sessions_path, triggering our sessions#create action
+  # It's a simple form_tag which will submit a POST request to the sessions_path,
+  #  triggering our sessions#create action
 
   def create
     user = User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      session[:admin]   = user.admin
       redirect_to movies_path, notice: "Welcome back, #{user.firstname}!"
     else
       flash.now[:alert] = "Log in failed..."
@@ -24,7 +26,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session.clear
     redirect_to movies_path, notice: "Adios!"
   end
 
