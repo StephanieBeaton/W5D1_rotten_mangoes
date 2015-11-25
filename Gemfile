@@ -40,4 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'byebug', group: [:development, :test]
 
+gem 'rmagick'
+gem 'carrierwave'
+
 
