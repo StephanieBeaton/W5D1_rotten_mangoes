@@ -1,7 +1,10 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    # @movies = Movie.all.page(params[:page]).per(10)
+    # @products = Product.order("name").page(params[:page]).per(5)
+    # @movies = Movie.all
+    @movies = Movie.page(params[:page]).per(10)
   end
 
   def show

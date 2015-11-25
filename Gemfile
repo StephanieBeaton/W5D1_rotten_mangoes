@@ -43,4 +43,6 @@ gem 'byebug', group: [:development, :test]
 gem 'rmagick'
 gem 'carrierwave'
 
+gem 'kaminari'
+
 
