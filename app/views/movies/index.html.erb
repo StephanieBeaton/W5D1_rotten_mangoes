@@ -2,6 +2,48 @@
     <%= link_to "Submit a movie!", new_movie_path %>
     <hr>
 
+    <!-- # Search form
+    Title (text)
+    Director (text)
+    Duration (Dropdown with options: )
+    "Under 90 minutes"
+    "Between 90 and 120 minutes"
+    "Over 120 minutes"
+    Submit button
+    -->
+
+    <!--
+    t.string   "title"
+    t.string   "director"
+    t.integer  "runtime_in_minutes"
+    t.text     "description"
+    t.string   "poster_image_url"
+    t.datetime "release_date"
+    -->
+    <p>
+
+    <% my_options = options_for_select(
+      [
+        ['', 0],
+        ['Under 90 minutes', 1],
+        ['Between 90 and 120 minutes', 2],
+        ['Over 120 minutes', 3]
+      ], 0
+    ) %>
+
+
+    <%= form_tag("/search", method: "get") do %>
+      <h4> Search for: </h4>
+      <%= label_tag(:title) %>
+      <%= text_field_tag(:title) %><br>
+      <%= label_tag(:director) %>
+      <%= text_field_tag(:director) %><br>
+      <%= label_tag(:duration) %>
+      <%= select_tag(:duration, options_for_select(my_options)) %><br>
+
+      <%= submit_tag("Search") %>
+    <% end %>
+    </p>
 
     <%= paginate @movies %>
     <%= page_entries_info @movies %>

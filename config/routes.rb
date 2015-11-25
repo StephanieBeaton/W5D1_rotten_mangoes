@@ -1,18 +1,20 @@
 RottenMangoes::Application.routes.draw do
 
+  get 'search', to: 'movies#search'
+
   namespace :admin do
     resources :users
   end
 
-  get 'reviews/new'
+  # get 'reviews/new'
 
-  get 'reviews/create'
+  # get 'reviews/create'
 
-  get 'sessions/new'
+  # get 'sessions/new'
 
-  get 'sessions/create'
+  # get 'sessions/create'
 
-  # resources :movies
+  resources :movies
 
   resources :users, only: [:new, :create]
 
