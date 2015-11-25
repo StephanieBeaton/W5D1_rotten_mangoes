@@ -1,0 +1,10 @@
+    <h1>Admin Users</h1>
+    <%= link_to "Create a user", new_admin_user_path %>
+    <hr>
+    <% @users.each do |user| %>
+      <h4>Email: <%= user.email %> </h4>
+      <h4>Full Name: <%= user.full_name %></h4>
+      <h4>Go to User details: <%= link_to user.full_name, admin_user_path(user) %>
+      <hr>
+    <% end %>
+

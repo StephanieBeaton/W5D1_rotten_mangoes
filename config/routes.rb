@@ -1,5 +1,9 @@
 RottenMangoes::Application.routes.draw do
 
+  namespace :admin do
+    resources :users
+  end
+
   get 'reviews/new'
 
   get 'reviews/create'
@@ -17,7 +21,6 @@ RottenMangoes::Application.routes.draw do
   resources :movies do
     resources :reviews, only: [:new, :create]
   end
-
 
   root to: 'movies#index'
 end
