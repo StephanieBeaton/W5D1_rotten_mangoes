@@ -36,6 +36,8 @@ class Movie < ActiveRecord::Base
 
   scope :director_like, ->(partial_director) { where("director LIKE ?", "%#{partial_director}%")}
 
+  scope :title_like_or_director_like, ->(partial_dir_or_title) { where("title LIKE ? OR director LIKE ?", "%#{partial_dir_or_title}%", "%#{partial_dir_or_title}%")}
+
   scope :runtime_less_than, ->(runtime_limit) { where("runtime_in_minutes < ?", runtime_limit)}
 
   scope :runtime_greater_than, ->(runtime_limit) { where("runtime_in_minutes > ?", runtime_limit)}
@@ -43,15 +45,19 @@ class Movie < ActiveRecord::Base
   scope :runtime_between, ->(lower_bound, upper_bound) { where("runtime_in_minutes BETWEEN ? AND ?", lower_bound, upper_bound)}
 
 
+  # On the movies page, instead of two separate text fields,
+  # ... have only one search box that allows the user to search
+  # ... for movies by title or director.
+
+  # In that box, they can type in "John"
+  # ... and movies directed by "John Hughes" would come up (eg: "The Breakfast Club")
+  # ... as well as a movie with "John" in the name (eg: "Being John Malkovich")
+
   def self.search(params)
     @movies = Movie.all
 
-    if params[:title] != ''
-      @movies = @movies.title_like(params[:title])
-    end
-
-    if params[:director] != ''
-      @movies = @movies.director_like(params[:director])
+    if params[:titleordirector] != ''
+      @movies = @movies.title_like_or_director_like(params[:titleordirector])
     end
 
     # 1, "Under 90 minutes"

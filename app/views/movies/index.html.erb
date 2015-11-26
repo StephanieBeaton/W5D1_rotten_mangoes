@@ -33,10 +33,8 @@
 
     <%= form_tag(movies_path, method: "get") do %>
       <h4> Search for: </h4>
-      <%= label_tag(:title) %>
-      <%= text_field_tag(:title) %><br>
-      <%= label_tag(:director) %>
-      <%= text_field_tag(:director) %><br>
+      <%= label_tag(:titleordirector, "Title or Director") %>
+      <%= text_field_tag(:titleordirector) %><br>
       <%= label_tag(:duration) %>
       <%= select_tag(:duration, options_for_select(my_options)) %><br>
       <%= hidden_field_tag(:search,value=true)%>
