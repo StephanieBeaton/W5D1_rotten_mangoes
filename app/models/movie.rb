@@ -46,15 +46,12 @@ class Movie < ActiveRecord::Base
   def self.search(params)
     @movies = Movie.all
 
-    byebug
     if params[:title] != ''
       @movies = @movies.title_like(params[:title])
-      byebug
     end
 
     if params[:director] != ''
       @movies = @movies.director_like(params[:director])
-      byebug
     end
 
     # 1, "Under 90 minutes"
@@ -64,16 +61,12 @@ class Movie < ActiveRecord::Base
     case params[:duration]
     when "1"
       @movies = @movies.runtime_less_than(90)
-      byebug
     when "2"
       @movies = @movies.runtime_between(90, 120)
-      byebug
     when "3"
       @movies = @movies.runtime_greater_than(120)
-      byebug
     end
 
-    byebug
     @movies
   end
 

@@ -2,11 +2,8 @@ class MoviesController < ApplicationController
 
   def index
 
-    byebug
-
     if params[:search]
       @movies = Movie.search(params)
-      byebug
     else
       @movies = Movie.all
     end
