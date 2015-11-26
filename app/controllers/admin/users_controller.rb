@@ -62,8 +62,6 @@ class Admin::UsersController < ApplicationController
     # Tell the UserMailer to send a welcome email after desroy
     temp = UserMailer.account_deleted_notice_email(@user)
 
-    byebug
-
     temp.deliver
 
     @user.destroy
