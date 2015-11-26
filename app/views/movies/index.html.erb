@@ -31,8 +31,7 @@
       ], 0
     ) %>
 
-
-    <%= form_tag("/search", method: "get") do %>
+    <%= form_tag(movies_path, method: "get") do %>
       <h4> Search for: </h4>
       <%= label_tag(:title) %>
       <%= text_field_tag(:title) %><br>
@@ -40,6 +39,7 @@
       <%= text_field_tag(:director) %><br>
       <%= label_tag(:duration) %>
       <%= select_tag(:duration, options_for_select(my_options)) %><br>
+      <%= hidden_field_tag(:search,value=true)%>
 
       <%= submit_tag("Search") %>
     <% end %>
