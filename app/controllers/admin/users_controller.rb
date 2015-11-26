@@ -39,7 +39,33 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+
+    # Mailers are really just another way to render a view.
+    # Instead of rendering a view and sending out the HTTP protocol,
+    # they are just sending it out through the email protocols instead.
+    # Due to this, it makes sense to just have your controller tell the Mailer
+    # to send an email when a user is successfully created.
+
+    # Mailer --
+    # app/mailers/user_mailer.rb
+
+    # just edit the app/controllers/admin/users_controller.rb
+    # make it instruct the UserMailer to deliver an email to the user being deletedd
+    # by an Admin
+    # by editing the destroy action
+    # and inserting a call to UserMailer.welcome_email
+    # right before the user is successfully deleted.
+
+
     @user = User.find(params[:id])
+
+    # Tell the UserMailer to send a welcome email after desroy
+    temp = UserMailer.account_deleted_notice_email(@user)
+
+    byebug
+
+    temp.deliver
+
     @user.destroy
     redirect_to admin_users_path
   end
